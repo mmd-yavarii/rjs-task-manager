@@ -1,0 +1,18 @@
+@import './variable';
+
+.todocontainer {
+  margin-top: 2em;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 1em;
+
+  button {
+    background-color: $primary-color;
+    padding: 0.6em;
+    margin-top: 1em;
+    border-radius: 10px;
+    font-size: 900;
+    width: 100%;
+  }
+}

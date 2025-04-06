@@ -12,11 +12,13 @@ function Layout({ children }) {
   return (
     <div>
       <header className={styles.header}>
-        <p>{pathname == '/' ? 'todos' : pathname.replace('/', '')}</p>
+        <p>{pathname == '/' ? 'todos' : pathname.replace('/', '').replace('/', ' ')}</p>
 
-        {pathname == '/' && <button>Add Todo + </button>}
-
-        {pathname == '/habits' && <button>Add Habit + </button>}
+        {(pathname == '/' || pathname == '/habits') && (
+          <Link to="/add" className={styles.addBtn}>
+            Add New +
+          </Link>
+        )}
       </header>
 
       {children}

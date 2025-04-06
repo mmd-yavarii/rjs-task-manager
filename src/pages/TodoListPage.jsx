@@ -1,12 +1,18 @@
+import Empty from '../components/Empty';
+import { useTodo } from '../contexts/TodoProvider';
+
+import { ImFileEmpty } from 'react-icons/im';
+
 function TodoListPage() {
+  const [todos, dispatchTodos] = useTodo();
+
   return (
     <div className="page">
-      <h1>hello</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis deserunt laboriosam molestiae sint excepturi eius voluptatum quasi id
-        corporis, deleniti labore molestias soluta assumenda voluptatem dolorem minus officia consectetur voluptas!
-      </p>
-      <h3>mnsdfklhs</h3>
+      {todos.length ? (
+        todos.map((i) => <p key={i.id}>{i.title}</p>)
+      ) : (
+        <Empty title="There is no todo" decription="It looks like you haven't added any todos yet." />
+      )}
     </div>
   );
 }
