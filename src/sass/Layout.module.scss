@@ -1,0 +1,54 @@
+@import './variable';
+
+.header {
+  background-color: $background-primary-color;
+  border-bottom: 1px solid $border-color;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em 1em;
+  text-transform: capitalize;
+
+  button {
+    background-color: transparent;
+    font-size: 0.9rem;
+    color: $primary-color;
+  }
+}
+
+.footer {
+  background-color: $background-primary-color;
+  border-top: 1px solid $border-color;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 4em;
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+  padding: 0.5em;
+
+  .items {
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 0.5em;
+    opacity: 0.4;
+    span {
+      font-size: 0.6rem;
+    }
+  }
+
+  .activeItem {
+    @extend .items;
+    opacity: 1;
+    color: $primary-color;
+  }
+}

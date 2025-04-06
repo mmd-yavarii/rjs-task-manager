@@ -1,0 +1,42 @@
+@import './variable';
+@import './mixins';
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: auto;
+  max-width: 1000px;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: $background-primary-color;
+  color: $text-primary-color;
+}
+
+a {
+  text-decoration: none;
+  font-size: 1rem;
+  @include pointer;
+  color: $text-primary-color;
+}
+
+button {
+  @include pointer;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  color: $text-primary-color;
+}
+
+.page {
+  @include changePage();
+}

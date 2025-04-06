@@ -1,0 +1,34 @@
+// set cursor responsively
+@mixin pointer() {
+  transition: all 0.3s;
+  cursor: default;
+  &:active {
+    opacity: 0.7;
+  }
+  @media (min-width: 600px) {
+    cursor: pointer;
+  }
+}
+
+// animation for change pages
+@mixin changePage() {
+  * {
+    @for $i from 1 through 100 {
+      @if ($i == 1) {
+        animation: opacities 0.3s ease-in #{$i * 0}s both;
+      } @else {
+        &:nth-child(#{$i}) {
+          animation: opacities 0.3s ease-in #{$i * 0.09}s both;
+        }
+      }
+    }
+  }
+  @keyframes opacities {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
