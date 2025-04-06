@@ -5,7 +5,7 @@ import HabitPage from './pages/HabitPage';
 import StatisticsPage from './pages/StatisticsPage';
 import TodoProvider from './contexts/TodoProvider';
 import AddNewTaskPage from './pages/AddNewTaskPage';
-import AddTodo from './contexts/AddTodo';
+import AddTodo from './components/AddTodo';
 
 function App() {
   return (

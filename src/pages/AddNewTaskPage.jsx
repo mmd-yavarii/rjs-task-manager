@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, NavLink, Outlet, replace, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 import styles from '../sass/AddPage.module.scss';
 

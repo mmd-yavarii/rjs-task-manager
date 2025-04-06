@@ -1,15 +1,24 @@
-import Empty from '../components/Empty';
+import { useEffect, useState } from 'react';
 import { useTodo } from '../contexts/TodoProvider';
 
-import { ImFileEmpty } from 'react-icons/im';
+import Empty from '../components/Empty';
+import Todo from '../components/Todo';
+import FilterTodos from '../components/FilterTodos';
 
 function TodoListPage() {
   const [todos, dispatchTodos] = useTodo();
+  const [displayTodo, setDisplayTodos] = useState(todos);
+
+  useEffect(() => setDisplayTodos(todos), [todos]);
 
   return (
     <div className="page">
-      {todos.length ? (
-        todos.map((i) => <p key={i.id}>{i.title}</p>)
+      <FilterTodos setDisplayTodos={setDisplayTodos} />
+
+      <p className="session-title">Todos</p>
+
+      {displayTodo.length ? (
+        displayTodo.map((i) => <Todo key={i.id} info={i} />)
       ) : (
         <Empty title="There is no todo" decription="It looks like you haven't added any todos yet." />
       )}

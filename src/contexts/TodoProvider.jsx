@@ -1,8 +1,8 @@
-import { createContext, useContext, useEffect, useReducer } from 'react';
+import { createContext, useContext, useEffect, useReducer, useState } from 'react';
 
 const TodoContext = createContext();
 
-const initialState = JSON.parse(localStorage.getItem('todos')) ?? [];
+const initialState = 'todos' in localStorage ? JSON.parse(localStorage.getItem('todos')) : [];
 
 function reducer(state, action) {
   switch (action.type) {
@@ -13,8 +13,16 @@ function reducer(state, action) {
       return state.filter((i) => i.id != action.payload.id);
 
     case 'CHANGE_STATUS':
-      const todo = state.find((i) => i.id == action.payload.id);
-      todo.isDone = !todo.isDone;
+      return state.map((item) => {
+        if (item.id === action.payload.id) {
+          return { ...item, isDone: !item.isDone };
+          s;
+        }
+        return item;
+      });
+
+    default:
+      throw new Error('Action is not valied');
   }
 }
 
