@@ -30,7 +30,7 @@ function Todo({ info }) {
       </div>
 
       <button onClick={deleteTodoHandler}>
-        <FiTrash2 />
+        <FiTrash2 fontSize="1.2rem" opacity="0.6" />
       </button>
     </div>
   );

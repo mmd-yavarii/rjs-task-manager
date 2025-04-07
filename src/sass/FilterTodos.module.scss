@@ -21,8 +21,10 @@
     opacity: 0.5;
     background-color: $background-secondary-color;
     border: 1px solid $border-color;
-    padding: 0.5em 0.9em;
+    padding: 0.5em 0.8em;
     border-radius: 13px;
+    font-weight: 700;
+    font-size: 1.1rem;
   }
   .activeFilterBtn {
     @extend .filterBtn;

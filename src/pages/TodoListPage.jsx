@@ -15,13 +15,13 @@ function TodoListPage() {
     <div className="page">
       <FilterTodos setDisplayTodos={setDisplayTodos} />
 
-      <p className="session-title">Todos</p>
-
-      {displayTodo.length ? (
-        displayTodo.map((i) => <Todo key={i.id} info={i} />)
-      ) : (
-        <Empty title="There is no todo" decription="It looks like you haven't added any todos yet." />
-      )}
+      <div style={{ marginTop: '3em' }}>
+        {displayTodo.length ? (
+          displayTodo.map((i) => <Todo key={i.id} info={i} />)
+        ) : (
+          <Empty title="There is no todo" decription="It looks like you haven't added any todos yet." />
+        )}
+      </div>
     </div>
   );
 }
