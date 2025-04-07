@@ -15,7 +15,7 @@ function FilterTodos({ setDisplayTodos }) {
   useEffect(() => {
     const newCategory = searchParams.get('category') ?? 'all';
 
-    const result = newCategory != 'all' ? todos.filter((i) => i.category == newCategory) : todos;
+    const result = newCategory != 'all' ? todos.filter((i) => i.category.toLowerCase() == newCategory) : todos;
 
     setCategory(newCategory);
     setDisplayTodos(result);
@@ -24,7 +24,7 @@ function FilterTodos({ setDisplayTodos }) {
   // set category as query string
   function categoryHandler(event) {
     const key = 'category';
-    const value = event.target.innerText;
+    const value = event.target.innerText.toLowerCase();
     if (value == 'all') {
       setSearchParams({}, { replace: true });
       return;

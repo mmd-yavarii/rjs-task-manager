@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useReducer, useState } from 'react';
+import { isNewDay } from '../helpers/helper';
 
 const TodoContext = createContext();
 
@@ -16,9 +17,14 @@ function reducer(state, action) {
       return state.map((item) => {
         if (item.id === action.payload.id) {
           return { ...item, isDone: !item.isDone };
-          s;
         }
         return item;
+      });
+
+    case 'RESET_TODOS':
+      return state.map((i) => {
+        i.isDone = false;
+        return i;
       });
 
     default:
@@ -28,10 +34,15 @@ function reducer(state, action) {
 
 function TodoProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const NewDay = isNewDay();
 
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(state));
   }, [state]);
+
+  useEffect(() => {
+    NewDay && dispatch({ type: 'RESET_TODOS' });
+  }, [NewDay]);
 
   return <TodoContext.Provider value={{ state, dispatch }}>{children}</TodoContext.Provider>;
 }

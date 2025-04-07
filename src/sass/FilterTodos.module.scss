@@ -3,6 +3,7 @@
 .filterBtnContainer {
   padding: 1em 0.5em;
   padding-bottom: 0;
+  margin-top: 0.5em;
   padding-right: 0;
   overflow-x: auto;
   white-space: nowrap;
@@ -13,10 +14,15 @@
   }
 
   .filterBtn {
+    text-transform: capitalize;
     background-color: transparent;
     display: inline-block;
-    margin: 0 8px;
+    margin-left: 0.6em;
     opacity: 0.5;
+    background-color: $background-secondary-color;
+    border: 1px solid $border-color;
+    padding: 0.2em 0.6em;
+    border-radius: 7px;
   }
   .activeFilterBtn {
     @extend .filterBtn;

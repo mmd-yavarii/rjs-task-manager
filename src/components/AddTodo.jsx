@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
-import styles from '../sass/todoOrHabitPart.module.scss';
+
+import styles from '../sass/AddTodoHabit.module.scss';
 
 import { v4 as uuidv4 } from 'uuid';
 import { useTodo } from '../contexts/TodoProvider';
