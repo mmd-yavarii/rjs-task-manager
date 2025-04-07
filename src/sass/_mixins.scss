@@ -13,15 +13,7 @@
 // animation for change pages
 @mixin changePage() {
   * {
-    @for $i from 1 through 7 {
-      @if ($i == 1) {
-        animation: opacities 0.3s ease-in #{$i * 0}s both;
-      } @else {
-        &:nth-child(#{$i}) {
-          animation: opacities 0.3s ease-in #{$i * 0.09}s both;
-        }
-      }
-    }
+    animation: opacities 0.3s ease-in;
   }
   @keyframes opacities {
     0% {
