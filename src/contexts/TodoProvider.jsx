@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo, useReducer, useState } from 'react';
 import { isNewDay } from '../helpers/helper';
 import { useLocalStorage } from '../hooks/Hooks';
 
@@ -11,6 +11,14 @@ function reducer(state, action) {
 
     case 'REMOVE_TODO':
       return state.filter((i) => i.id != action.payload.id);
+
+    case 'EDIT':
+      return state.map((todo) => {
+        if (todo.id === action.payload.id) {
+          return { ...todo, title: action.payload.newTitle };
+        }
+        return todo;
+      });
 
     case 'CHANGE_STATUS':
       return state.map((item) => {
@@ -49,7 +57,15 @@ function TodoProvider({ children }) {
 // custom hook for get context data
 function useTodo() {
   const { state, dispatch } = useContext(TodoContext);
-  return [state, dispatch];
+  const [displayTodo, setDisplayTodos] = useState(state);
+
+  const titles = useMemo(() => state.map((i) => i.title), [state]);
+
+  useEffect(() => {
+    setDisplayTodos(state);
+  }, [titles]);
+
+  return [state, dispatch, displayTodo, setDisplayTodos];
 }
 
 export default TodoProvider;

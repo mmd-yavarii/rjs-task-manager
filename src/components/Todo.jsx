@@ -1,9 +1,11 @@
+import { useState } from 'react';
+
 import { useTodo } from '../contexts/TodoProvider';
 import styles from '../sass/Todo.module.scss';
 
 import { TiTick } from 'react-icons/ti';
 import { FiTrash2 } from 'react-icons/fi';
-import { useState } from 'react';
+import { TbEdit } from 'react-icons/tb';
 
 function Todo({ info }) {
   const [todos, dispatchTodos] = useTodo();
@@ -23,18 +25,36 @@ function Todo({ info }) {
     }
   }
 
+  // edit a todo handler
+  function editHandler(event) {
+    const todoItem = event.target.closest('[data-edit-btn]');
+    const todoTitle = todoItem.parentElement.previousElementSibling.lastChild.innerText;
+    const newTitle = prompt('todo title', todoTitle);
+    if (newTitle) {
+      dispatchTodos({ type: 'EDIT', payload: { id: info.id, newTitle: newTitle } });
+    }
+  }
+
   return (
     <div className={styles.container}>
       <div>
         <div onClick={changeStatusHandler} className={isTodoDone ? styles.done : styles.status}>
           {isTodoDone && <TiTick />}
         </div>
-        <p className={isTodoDone ? styles.doneTitle : null}>{info.title}</p>
+        <p data-todo-title={true} className={isTodoDone ? styles.doneTitle : null}>
+          {info.title}
+        </p>
       </div>
 
-      <button onClick={deleteTodoHandler}>
-        <FiTrash2 fontSize="1.2rem" opacity="0.6" />
-      </button>
+      <div className={styles.btnsHandler}>
+        <button onClick={editHandler} data-edit-btn={true}>
+          <TbEdit />
+        </button>
+
+        <button onClick={deleteTodoHandler}>
+          <FiTrash2 />
+        </button>
+      </div>
     </div>
   );
 }

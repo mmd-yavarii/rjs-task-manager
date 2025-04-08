@@ -19,7 +19,7 @@ function FilterTodos({ setDisplayTodos, displayTodo }) {
 
     setCategory(newCategory);
     setDisplayTodos(result);
-  }, [searchParams, displayTodo.length]);
+  }, [searchParams]);
 
   // set category as query string
   function categoryHandler(event) {
