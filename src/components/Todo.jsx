@@ -3,13 +3,16 @@ import styles from '../sass/Todo.module.scss';
 
 import { TiTick } from 'react-icons/ti';
 import { FiTrash2 } from 'react-icons/fi';
+import { useState } from 'react';
 
 function Todo({ info }) {
   const [todos, dispatchTodos] = useTodo();
+  const [isTodoDone, setIsTodoDone] = useState(info.isDone);
 
   // change todo status handler
   function changeStatusHandler() {
     dispatchTodos({ type: 'CHANGE_STATUS', payload: info });
+    setIsTodoDone((prev) => !prev);
   }
 
   // delete todo handler
@@ -23,10 +26,10 @@ function Todo({ info }) {
   return (
     <div className={styles.container}>
       <div>
-        <div onClick={changeStatusHandler} className={info.isDone ? styles.done : styles.status}>
-          {info.isDone && <TiTick />}
+        <div onClick={changeStatusHandler} className={isTodoDone ? styles.done : styles.status}>
+          {isTodoDone && <TiTick />}
         </div>
-        <p className={info.isDone ? styles.doneTitle : null}>{info.title}</p>
+        <p className={isTodoDone ? styles.doneTitle : null}>{info.title}</p>
       </div>
 
       <button onClick={deleteTodoHandler}>

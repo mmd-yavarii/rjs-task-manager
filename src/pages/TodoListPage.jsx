@@ -9,8 +9,6 @@ function TodoListPage() {
   const [todos, dispatchTodos] = useTodo();
   const [displayTodo, setDisplayTodos] = useState(todos);
 
-  useEffect(() => setDisplayTodos(todos), [todos]);
-
   return (
     <div className="page">
       <FilterTodos setDisplayTodos={setDisplayTodos} />

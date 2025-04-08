@@ -13,7 +13,7 @@
 // animation for change pages
 @mixin changePage() {
   * {
-    animation: opacities 0.3s ease-in;
+    animation: opacities 0.4s ease-in;
   }
   @keyframes opacities {
     0% {
