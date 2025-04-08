@@ -4,7 +4,7 @@ import { useTodo } from '../contexts/TodoProvider';
 import styles from '../sass/FilterTodos.module.scss';
 import { useEffect, useState } from 'react';
 
-function FilterTodos({ setDisplayTodos }) {
+function FilterTodos({ setDisplayTodos, displayTodo }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [todos, dispatchTodos] = useTodo();
   const categories = ['all', ...new Set(todos.map((i) => i.category))];
@@ -19,7 +19,7 @@ function FilterTodos({ setDisplayTodos }) {
 
     setCategory(newCategory);
     setDisplayTodos(result);
-  }, [searchParams]);
+  }, [searchParams, displayTodo.length]);
 
   // set category as query string
   function categoryHandler(event) {

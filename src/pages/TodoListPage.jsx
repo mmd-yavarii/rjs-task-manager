@@ -9,9 +9,11 @@ function TodoListPage() {
   const [todos, dispatchTodos] = useTodo();
   const [displayTodo, setDisplayTodos] = useState(todos);
 
+  useEffect(() => setDisplayTodos(todos), [todos.length]);
+
   return (
     <div className="page">
-      <FilterTodos setDisplayTodos={setDisplayTodos} />
+      <FilterTodos setDisplayTodos={setDisplayTodos} displayTodo={displayTodo} />
 
       <div style={{ marginTop: '3em' }}>
         {displayTodo.length ? (

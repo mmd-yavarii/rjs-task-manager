@@ -1,9 +1,8 @@
 import { createContext, useContext, useEffect, useReducer, useState } from 'react';
 import { isNewDay } from '../helpers/helper';
+import { useLocalStorage } from '../hooks/Hooks';
 
 const TodoContext = createContext();
-
-const initialState = 'todos' in localStorage ? JSON.parse(localStorage.getItem('todos')) : [];
 
 function reducer(state, action) {
   switch (action.type) {
@@ -33,12 +32,12 @@ function reducer(state, action) {
 }
 
 function TodoProvider({ children }) {
+  const [initialState, setInitialState] = useLocalStorage('todos', []);
+
   const [state, dispatch] = useReducer(reducer, initialState);
   const NewDay = isNewDay();
 
-  useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(state));
-  }, [state]);
+  useEffect(() => setInitialState(state), [state]);
 
   useEffect(() => {
     NewDay && dispatch({ type: 'RESET_TODOS' });
