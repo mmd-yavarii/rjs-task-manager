@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import styles from '../sass/AddTodoHabit.module.scss';
 
@@ -6,7 +6,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { useTodo } from '../contexts/TodoProvider';
 
 function AddTodo() {
-  const [state, dispatch] = useTodo();
+  const [state, dispatchTodos] = useTodo();
+  const categories = [...new Set(state.map((i) => i.category))];
 
   const titleEle = useRef();
   const categoryEle = useRef();
@@ -14,29 +15,74 @@ function AddTodo() {
   const title = useRef('');
   const category = useRef('');
 
+  const [importance, setImportance] = useState('c');
+
   useEffect(() => {
     titleEle.current.focus();
   }, []);
 
   // add new todo handler
   function addTodoHandler() {
-    if (title.current) {
-      const todo = { title: title.current.trim(), isDone: false, id: uuidv4(), category: category.current.trim() };
+    if (title.current && category.current) {
+      const todo = { title: title.current.trim(), isDone: false, id: uuidv4(), category: category.current.trim(), importance: importance };
 
-      dispatch({ type: 'ADD_TODO', payload: todo });
+      dispatchTodos({ type: 'ADD_TODO', payload: todo });
       titleEle.current.value = '';
       categoryEle.current.value = '';
     } else {
-      alert('Enter title');
+      if (!titleEle.current.value) titleEle.current.classList.add(styles.errorInp);
+      if (!categoryEle.current.value) categoryEle.current.classList.add(styles.errorInp);
     }
+  }
+
+  // set category with button haandler
+  function categoryRecomended(event) {
+    categoryEle.current.value = event.target.innerText;
+  }
+
+  // chaange inuts handler
+  function titleChangeHandler(event) {
+    title.current = event.target.value;
+    event.target.classList.remove(styles.errorInp);
+  }
+  function categoryChangeHandler(event) {
+    category.current = event.target.value;
+    event.target.classList.remove(styles.errorInp);
   }
 
   return (
     <div className={styles.todocontainer}>
-      <input ref={titleEle} type="text" placeholder="Todo title" onChange={(e) => (title.current = e.target.value)} required={true} />
-      <input ref={categoryEle} type="text" placeholder="Category" onChange={(e) => (category.current = e.target.value)} />
+      <input ref={titleEle} type="text" placeholder="Todo title" onChange={titleChangeHandler} />
+      <input ref={categoryEle} type="text" placeholder="Category" onChange={categoryChangeHandler} />
 
-      <button onClick={addTodoHandler}>Add Todo</button>
+      <div className={styles.todoRecomender}>
+        {categories.map((i, index) => (
+          <button key={index} onClick={categoryRecomended}>
+            {i}
+          </button>
+        ))}
+      </div>
+
+      <div className={styles.importance}>
+        <div>
+          <label htmlFor="a">A</label>
+          <input type="radio" name="importance" value="a" id="a" checked={importance == 'a'} onChange={(e) => setImportance(e.target.value)} />
+        </div>
+
+        <div>
+          <label htmlFor="b">B</label>
+          <input type="radio" name="importance" value="b" id="b" checked={importance == 'b'} onChange={(e) => setImportance(e.target.value)} />
+        </div>
+
+        <div>
+          <label htmlFor="c">C</label>
+          <input type="radio" name="importance" value="c" id="c" checked={importance == 'c'} onChange={(e) => setImportance(e.target.value)} />
+        </div>
+      </div>
+
+      <button onClick={addTodoHandler} className={styles.addBtn}>
+        Add Todo
+      </button>
     </div>
   );
 }

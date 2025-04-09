@@ -7,14 +7,91 @@
   flex-direction: column;
   padding: 1em;
 
-  button {
+  .errorInp {
+    transition: all 0.3s;
+    border: 1px solid #ff002f49;
+    background-color: #ff002f0f;
+    &::placeholder {
+      color: #ff002f;
+    }
+  }
+
+  .importance {
+    margin-top: 1em;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 1em;
+
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+
+      input {
+        margin: 0;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-color: $background-secondary-color2;
+
+        transform: scale(0.6);
+        border-radius: 13px;
+        outline: none;
+        position: relative;
+        top: 2px;
+
+        &:checked {
+          background-color: $primary-color;
+          border-color: $primary-color;
+          position: relative;
+          &::after {
+            content: '✓';
+            color: #ffff;
+            font-size: 1.1rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+
+  .addBtn {
     background-color: $primary-color;
     padding: 1em;
     font-weight: bold;
-    margin-top: 2em;
     border-radius: 10px;
     font-size: 900;
     width: 100%;
+    margin-top: 2.5em;
+  }
+
+  .todoRecomender {
+    margin: 0.5em 0;
+    padding-top: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    width: 100%;
+
+    button {
+      width: fit-content;
+      padding: 0.2em 0.4em;
+      background-color: transparent;
+      background-color: $background-secondary-color;
+      font-weight: 600;
+      border-radius: 10px;
+    }
+    .selected {
+      opacity: 0.4;
+    }
   }
 }
 

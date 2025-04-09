@@ -42,7 +42,7 @@ function Todo({ info }) {
           {isTodoDone && <TiTick />}
         </div>
         <p data-todo-title={true} className={isTodoDone ? styles.doneTitle : null}>
-          {info.title}
+          {info.importance.toUpperCase()} - {info.title}
         </p>
       </div>
 

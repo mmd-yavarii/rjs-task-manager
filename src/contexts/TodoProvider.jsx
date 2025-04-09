@@ -59,6 +59,10 @@ function useTodo() {
   const { state, dispatch } = useContext(TodoContext);
   const [displayTodo, setDisplayTodos] = useState(state);
 
+  // sort witth importnce
+  const importanceOrder = { a: 1, b: 2, c: 3 };
+  state.sort((a, b) => importanceOrder[a.importance] - importanceOrder[b.importance]);
+
   const titles = useMemo(() => state.map((i) => i.title), [state]);
 
   useEffect(() => {
