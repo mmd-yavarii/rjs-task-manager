@@ -6,6 +6,7 @@ import styles from '../sass/Todo.module.scss';
 import { TiTick } from 'react-icons/ti';
 import { FiTrash2 } from 'react-icons/fi';
 import { TbEdit } from 'react-icons/tb';
+import { GoDotFill } from 'react-icons/go';
 
 function Todo({ info }) {
   const [todos, dispatchTodos] = useTodo();
@@ -38,11 +39,16 @@ function Todo({ info }) {
   return (
     <div className={styles.container}>
       <div>
+        <GoDotFill
+          fontSize="0.7rem"
+          color={(info.importance == 'a' && 'red') || (info.importance == 'b' && '#ff7b00') || (info.importance == 'c' && '#ffb300')}
+        />
+
         <div onClick={changeStatusHandler} className={isTodoDone ? styles.done : styles.status}>
           {isTodoDone && <TiTick />}
         </div>
         <p data-todo-title={true} className={isTodoDone ? styles.doneTitle : null}>
-          {info.importance.toUpperCase()} - {info.title}
+          {info.title}
         </p>
       </div>
 
