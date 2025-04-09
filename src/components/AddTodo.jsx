@@ -23,7 +23,7 @@ function AddTodo() {
 
   // add new todo handler
   function addTodoHandler() {
-    if (title.current.length && category.current.length) {
+    if (titleEle.current.value.length && categoryEle.current.value.length) {
       const todo = { title: title.current.trim(), isDone: false, id: uuidv4(), category: category.current.trim(), importance: importance };
 
       dispatchTodos({ type: 'ADD_TODO', payload: todo });
