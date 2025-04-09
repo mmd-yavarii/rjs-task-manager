@@ -24,7 +24,13 @@ function AddTodo() {
   // add new todo handler
   function addTodoHandler() {
     if (titleEle.current.value.length && categoryEle.current.value.length) {
-      const todo = { title: title.current.trim(), isDone: false, id: uuidv4(), category: category.current.trim(), importance: importance };
+      const todo = {
+        title: titleEle.current.value.trim(),
+        isDone: false,
+        id: uuidv4(),
+        category: categoryEle.current.value.trim(),
+        importance: importance,
+      };
 
       dispatchTodos({ type: 'ADD_TODO', payload: todo });
       titleEle.current.value = '';
