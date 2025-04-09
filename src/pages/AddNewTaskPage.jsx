@@ -15,7 +15,7 @@ function AddNewTaskPage() {
 
   return (
     <div className="page">
-      <div className={styles.linkContainer}>
+      {/* <div className={styles.linkContainer}>
         <NavLink to="/add/todo" replace={true}>
           add todo
         </NavLink>
@@ -23,7 +23,7 @@ function AddNewTaskPage() {
         <NavLink to="/add/habit" replace={true}>
           add habit
         </NavLink>
-      </div>
+      </div> */}
 
       <Outlet />
     </div>

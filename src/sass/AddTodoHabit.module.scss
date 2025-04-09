@@ -1,4 +1,5 @@
 @import './variable';
+@import './mixins';
 
 .todocontainer {
   margin-top: 2em;
@@ -16,8 +17,15 @@
     }
   }
 
-  .importance {
+  .title {
+    text-align: left;
+    width: 100%;
+    opacity: 0.5;
+    font-size: 0.9rem;
     margin-top: 1em;
+  }
+
+  .importance {
     width: 100%;
 
     display: flex;
@@ -31,6 +39,7 @@
       font-weight: bold;
 
       input {
+        @include pointer();
         margin: 0;
         appearance: none;
         -webkit-appearance: none;

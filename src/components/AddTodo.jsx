@@ -23,7 +23,7 @@ function AddTodo() {
 
   // add new todo handler
   function addTodoHandler() {
-    if (title.current && category.current) {
+    if (title.current.length && category.current.length) {
       const todo = { title: title.current.trim(), isDone: false, id: uuidv4(), category: category.current.trim(), importance: importance };
 
       dispatchTodos({ type: 'ADD_TODO', payload: todo });
@@ -55,6 +55,7 @@ function AddTodo() {
       <input ref={titleEle} type="text" placeholder="Todo title" onChange={titleChangeHandler} />
       <input ref={categoryEle} type="text" placeholder="Category" onChange={categoryChangeHandler} />
 
+      <p className={styles.title}>Your Caategories </p>
       <div className={styles.todoRecomender}>
         {categories.map((i, index) => (
           <button key={index} onClick={categoryRecomended}>
@@ -63,6 +64,7 @@ function AddTodo() {
         ))}
       </div>
 
+      <p className={styles.title}>Importance</p>
       <div className={styles.importance}>
         <div>
           <label htmlFor="a">A</label>
