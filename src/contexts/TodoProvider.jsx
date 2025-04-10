@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useReducer, useState } from 'react';
 import { isNewDay } from '../helpers/helper';
 import { useLocalStorage } from '../hooks/Hooks';
+import { useSearchParams } from 'react-router-dom';
 
 const TodoContext = createContext();
 
@@ -58,16 +59,16 @@ function TodoProvider({ children }) {
 function useTodo() {
   const { state, dispatch } = useContext(TodoContext);
   const [displayTodo, setDisplayTodos] = useState(state);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   // sort witth importnce
   const importanceOrder = { a: 1, b: 2, c: 3 };
   state.sort((a, b) => importanceOrder[a.importance] - importanceOrder[b.importance]);
 
-  const titles = useMemo(() => state.map((i) => i.title), [state]);
-
   useEffect(() => {
     setDisplayTodos(state);
-  }, [titles]);
+    setSearchParams({});
+  }, [state.length]);
 
   return [state, dispatch, displayTodo, setDisplayTodos];
 }

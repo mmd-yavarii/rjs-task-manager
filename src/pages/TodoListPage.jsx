@@ -5,7 +5,9 @@ import Todo from '../components/Todo';
 import FilterTodos from '../components/FilterTodos';
 
 function TodoListPage() {
-  const [todos, dispatchTodos, displayTodo, setDisplayTodos] = useTodo();
+  const [, , displayTodo, setDisplayTodos] = useTodo();
+
+  // const a = displayTodo.filter (i => )
 
   return (
     <div className="page">

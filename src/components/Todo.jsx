@@ -11,6 +11,7 @@ import { GoDotFill } from 'react-icons/go';
 function Todo({ info }) {
   const [todos, dispatchTodos] = useTodo();
   const [isTodoDone, setIsTodoDone] = useState(info.isDone);
+  const [todoTitle, setTodoTitle] = useState(info.title);
 
   // change todo status handler
   function changeStatusHandler() {
@@ -33,23 +34,25 @@ function Todo({ info }) {
     const newTitle = prompt('todo title', todoTitle);
     if (newTitle) {
       dispatchTodos({ type: 'EDIT', payload: { id: info.id, newTitle: newTitle } });
+      setTodoTitle(newTitle);
     }
   }
 
   return (
     <div className={styles.container}>
       <div>
-        <GoDotFill
-          fontSize="0.7rem"
-          color={(info.importance == 'a' && 'red') || (info.importance == 'b' && '#ff7b00') || (info.importance == 'c' && '#ffb300')}
-        />
-
         <div onClick={changeStatusHandler} className={isTodoDone ? styles.done : styles.status}>
           {isTodoDone && <TiTick />}
         </div>
         <p data-todo-title={true} className={isTodoDone ? styles.doneTitle : null}>
-          {info.title}
+          {todoTitle}
         </p>
+
+        {/* <GoDotFill
+          fontSize="0.5rem"
+          opacity="0.7"
+          color={(info.importance == 'a' && 'red') || (info.importance == 'b' && '#ff7b00') || (info.importance == 'c' && '#ffb300')}
+        /> */}
       </div>
 
       <div className={styles.btnsHandler}>
