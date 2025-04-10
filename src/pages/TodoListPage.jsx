@@ -7,7 +7,9 @@ import FilterTodos from '../components/FilterTodos';
 function TodoListPage() {
   const [, , displayTodo, setDisplayTodos] = useTodo();
 
-  // const a = displayTodo.filter (i => )
+  const a = displayTodo.filter((i) => i.importance == 'a');
+  const b = displayTodo.filter((i) => i.importance == 'b');
+  const c = displayTodo.filter((i) => i.importance == 'c');
 
   return (
     <div className="page">
@@ -15,9 +17,24 @@ function TodoListPage() {
 
       <div style={{ marginTop: '3em' }}>
         {displayTodo.length ? (
-          displayTodo.map((i) => <Todo key={i.id} info={i} />)
+          <>
+            {!!a.length && <p className="titles">highPriority</p>}
+            {a.map((i) => (
+              <Todo key={i.id} info={i} />
+            ))}
+
+            {!!b.length && <p className="titles">mediumPriority</p>}
+            {b.map((i) => (
+              <Todo key={i.id} info={i} />
+            ))}
+
+            {!!c.length && <p className="titles">lowPriority</p>}
+            {c.map((i) => (
+              <Todo key={i.id} info={i} />
+            ))}
+          </>
         ) : (
-          <Empty title="There is no todo" decription="It looks like you haven't added any todos yet." />
+          <Empty title="There is no todo" decription="It looks like you haven't added any todos yet." showAddTodo={true} />
         )}
       </div>
     </div>

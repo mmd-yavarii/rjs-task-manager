@@ -92,3 +92,11 @@ input {
 .active {
   color: $primary-color;
 }
+
+.titles {
+  margin: 1.4em 2em;
+  opacity: 0.5;
+  text-transform: capitalize;
+  margin-bottom: 0.6em;
+  font-size: 0.8rem;
+}
