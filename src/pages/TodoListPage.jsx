@@ -10,6 +10,7 @@ function TodoListPage() {
   const a = displayTodo.filter((i) => i.importance == 'a');
   const b = displayTodo.filter((i) => i.importance == 'b');
   const c = displayTodo.filter((i) => i.importance == 'c');
+  const today = displayTodo.filter((i) => i.importance == 'today');
 
   return (
     <div className="page">
@@ -18,17 +19,22 @@ function TodoListPage() {
       <div style={{ marginTop: '3em' }}>
         {displayTodo.length ? (
           <>
-            {!!a.length && <p className="titles">highPriority</p>}
+            {!!today.length && <p className="titles">only for today</p>}
+            {today.map((i) => (
+              <Todo key={i.id} info={i} />
+            ))}
+
+            {!!a.length && <p className="titles">high Priority</p>}
             {a.map((i) => (
               <Todo key={i.id} info={i} />
             ))}
 
-            {!!b.length && <p className="titles">mediumPriority</p>}
+            {!!b.length && <p className="titles">medium Priority</p>}
             {b.map((i) => (
               <Todo key={i.id} info={i} />
             ))}
 
-            {!!c.length && <p className="titles">lowPriority</p>}
+            {!!c.length && <p className="titles">low Priority</p>}
             {c.map((i) => (
               <Todo key={i.id} info={i} />
             ))}

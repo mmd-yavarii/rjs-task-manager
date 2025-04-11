@@ -8,7 +8,7 @@ function Empty({ title, decription, showAddTodo = false }) {
       <span>{decription}</span>
 
       {showAddTodo && (
-        <Link style={{ marginTop: '1em', color: '#1673f5' }} to="">
+        <Link style={{ marginTop: '1em', color: '#1673f5' }} to="/add/todo">
           Add New Todo +
         </Link>
       )}

@@ -27,6 +27,7 @@
 
   .importance {
     width: 100%;
+    flex-wrap: wrap;
 
     display: flex;
     align-items: center;
@@ -35,10 +36,11 @@
     div {
       display: flex;
       align-items: center;
-      justify-content: center;
       font-weight: bold;
 
       input {
+        width: 2em;
+        height: 2em;
         @include pointer();
         margin: 0;
         appearance: none;

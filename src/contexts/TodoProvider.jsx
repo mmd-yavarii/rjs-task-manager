@@ -30,7 +30,8 @@ function reducer(state, action) {
       });
 
     case 'RESET_TODOS':
-      return state.map((i) => {
+      const newState = state.filter((i) => i.importance != 'today');
+      return newState.map((i) => {
         i.isDone = false;
         return i;
       });

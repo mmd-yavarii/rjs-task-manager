@@ -15,7 +15,7 @@ function AddTodo() {
   const title = useRef('');
   const category = useRef('');
 
-  const [importance, setImportance] = useState('c');
+  const [importance, setImportance] = useState('today');
 
   useEffect(() => {
     titleEle.current.focus();
@@ -71,20 +71,33 @@ function AddTodo() {
       </div>
 
       <p className={styles.title}>Importance</p>
+
       <div className={styles.importance}>
         <div>
-          <label htmlFor="a">A</label>
+          <label htmlFor="a">high</label>
           <input type="radio" name="importance" value="a" id="a" checked={importance == 'a'} onChange={(e) => setImportance(e.target.value)} />
         </div>
 
         <div>
-          <label htmlFor="b">B</label>
+          <label htmlFor="b">medium</label>
           <input type="radio" name="importance" value="b" id="b" checked={importance == 'b'} onChange={(e) => setImportance(e.target.value)} />
         </div>
 
         <div>
-          <label htmlFor="c">C</label>
+          <label htmlFor="c">low</label>
           <input type="radio" name="importance" value="c" id="c" checked={importance == 'c'} onChange={(e) => setImportance(e.target.value)} />
+        </div>
+
+        <div>
+          <label htmlFor="today">only for today</label>
+          <input
+            type="radio"
+            name="importance"
+            value="today"
+            id="today"
+            checked={importance == 'today'}
+            onChange={(e) => setImportance(e.target.value)}
+          />
         </div>
       </div>
 
