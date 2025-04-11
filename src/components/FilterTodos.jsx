@@ -37,7 +37,7 @@ function FilterTodos({ displayTodo, setDisplayTodos }) {
       <div className={styles.filterBtnContainer}>
         <div>
           {categories.map((item, index) => (
-            <button key={index} onClick={categoryHandler} className={category == item ? styles.activeFilterBtn : styles.filterBtn}>
+            <button key={index} onClick={categoryHandler} className={category == item.toLowerCase() ? styles.activeFilterBtn : styles.filterBtn}>
               {item}
             </button>
           ))}

@@ -6,12 +6,14 @@ import styles from '../sass/Todo.module.scss';
 import { TiTick } from 'react-icons/ti';
 import { FiTrash2 } from 'react-icons/fi';
 import { TbEdit } from 'react-icons/tb';
-import { GoDotFill } from 'react-icons/go';
+import { useSearchParams } from 'react-router-dom';
 
 function Todo({ info }) {
   const [todos, dispatchTodos] = useTodo();
   const [isTodoDone, setIsTodoDone] = useState(info.isDone);
   const [todoTitle, setTodoTitle] = useState(info.title);
+
+  const [searchParaams, setSearchParams] = useSearchParams();
 
   // change todo status handler
   function changeStatusHandler() {
@@ -24,6 +26,7 @@ function Todo({ info }) {
     const confirmation = confirm('Are you sure ?');
     if (confirmation) {
       dispatchTodos({ type: 'REMOVE_TODO', payload: info });
+      setSearchParams({});
     }
   }
 
@@ -47,12 +50,6 @@ function Todo({ info }) {
         <p data-todo-title={true} className={isTodoDone ? styles.doneTitle : null}>
           {todoTitle}
         </p>
-
-        {/* <GoDotFill
-          fontSize="0.5rem"
-          opacity="0.7"
-          color={(info.importance == 'a' && 'red') || (info.importance == 'b' && '#ff7b00') || (info.importance == 'c' && '#ffb300')}
-        /> */}
       </div>
 
       <div className={styles.btnsHandler}>

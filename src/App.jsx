@@ -5,7 +5,6 @@ import HabitPage from './pages/HabitPage';
 import StatisticsPage from './pages/StatisticsPage';
 import TodoProvider from './contexts/TodoProvider';
 import AddNewTaskPage from './pages/AddNewTaskPage';
-import AddTodo from './components/AddTodo';
 
 function App() {
   return (
@@ -15,10 +14,7 @@ function App() {
           <Route index element={<TodoListPage />} />
           <Route path="/habits" element={<HabitPage />} />
           <Route path="/statistics" element={<StatisticsPage />} />
-
-          <Route path="/add" element={<AddNewTaskPage />}>
-            <Route path="todo" element={<AddTodo />} />
-          </Route>
+          <Route path="/addTodo" element={<AddNewTaskPage />} />
         </Routes>
       </TodoProvider>
     </Layout>

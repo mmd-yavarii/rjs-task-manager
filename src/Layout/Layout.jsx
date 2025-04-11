@@ -15,7 +15,7 @@ function Layout({ children }) {
         <p>{pathname == '/' ? 'todos' : pathname.replace('/', '').replace('/', ' ')}</p>
 
         {(pathname == '/' || pathname == '/habits') && (
-          <Link to="/add" className={styles.addBtn}>
+          <Link to="/addTodo" className={styles.addBtn}>
             Add New +
           </Link>
         )}

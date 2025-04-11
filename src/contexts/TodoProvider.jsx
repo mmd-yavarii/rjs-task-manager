@@ -60,16 +60,6 @@ function TodoProvider({ children }) {
 function useTodo() {
   const { state, dispatch } = useContext(TodoContext);
   const [displayTodo, setDisplayTodos] = useState(state);
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  // sort witth importnce
-  const importanceOrder = { a: 1, b: 2, c: 3 };
-  state.sort((a, b) => importanceOrder[a.importance] - importanceOrder[b.importance]);
-
-  useEffect(() => {
-    setDisplayTodos(state);
-    setSearchParams({});
-  }, [state.length]);
 
   return [state, dispatch, displayTodo, setDisplayTodos];
 }
