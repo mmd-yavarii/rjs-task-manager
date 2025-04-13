@@ -9,7 +9,7 @@ import { TbEdit } from 'react-icons/tb';
 import { useSearchParams } from 'react-router-dom';
 
 function Todo({ info }) {
-  const [todos, dispatchTodos] = useTodo();
+  const [todos, dispatchTodos, displayTodo, setDisplayTodos] = useTodo();
   const [isTodoDone, setIsTodoDone] = useState(info.isDone);
   const [todoTitle, setTodoTitle] = useState(info.title);
 
@@ -22,11 +22,13 @@ function Todo({ info }) {
   }
 
   // delete todo handler
-  function deleteTodoHandler() {
+  function deleteTodoHandler(event) {
     const confirmation = confirm('Are you sure ?');
     if (confirmation) {
       dispatchTodos({ type: 'REMOVE_TODO', payload: info });
       setSearchParams({});
+      const todoItem = event.target.closest('[data-delete-btn]');
+      todoItem.parentElement.parentElement.style.display = 'none';
     }
   }
 
@@ -57,7 +59,7 @@ function Todo({ info }) {
           <TbEdit />
         </button>
 
-        <button onClick={deleteTodoHandler}>
+        <button onClick={deleteTodoHandler} data-delete-btn={true}>
           <FiTrash2 />
         </button>
       </div>

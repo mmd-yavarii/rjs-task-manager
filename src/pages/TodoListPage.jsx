@@ -5,7 +5,7 @@ import Todo from '../components/Todo';
 import FilterTodos from '../components/FilterTodos';
 
 function TodoListPage() {
-  const [, , displayTodo, setDisplayTodos] = useTodo();
+  const [todos, , displayTodo, setDisplayTodos] = useTodo();
 
   const a = displayTodo.filter((i) => i.importance == 'a');
   const b = displayTodo.filter((i) => i.importance == 'b');
@@ -17,7 +17,7 @@ function TodoListPage() {
       <FilterTodos setDisplayTodos={setDisplayTodos} displayTodo={displayTodo} />
 
       <div style={{ marginTop: '3em' }}>
-        {displayTodo.length ? (
+        {todos.length ? (
           <>
             {!!today.length && <p className="titles">only for today</p>}
             {today.map((i) => (
