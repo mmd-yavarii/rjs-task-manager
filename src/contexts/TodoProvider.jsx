@@ -47,7 +47,7 @@ function reducer(state, action) {
       const newState = state.filter((i) => i.importance != 'today');
 
       return newState.map((i) => {
-        const habitItem = i.habit.find((item) => item.date == today) || new Date();
+        const habitItem = i.habit.find((item) => item.date == today);
 
         if (habitItem.date != today) {
           i.habit.push({ date: new Date().toLocaleDateString(), isDone: false });

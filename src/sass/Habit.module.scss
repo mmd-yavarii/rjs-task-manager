@@ -40,14 +40,14 @@
 
     .done,
     .didnt {
-      background-color: $primary-color;
       width: 1.1em;
       height: 1.1em;
       display: inline-block;
       border-radius: 6px;
+      background-color: $primary-color;
     }
     .didnt {
-      opacity: 0.3;
+      opacity: 0.2;
     }
   }
 }
