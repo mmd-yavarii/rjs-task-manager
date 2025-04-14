@@ -30,6 +30,7 @@ function AddTodo() {
         id: uuidv4(),
         category: categoryEle.current.value.trim(),
         importance: importance,
+        habit: [{ date: new Date().toLocaleDateString(), isDone: false }],
       };
 
       dispatchTodos({ type: 'ADD_TODO', payload: todo });
